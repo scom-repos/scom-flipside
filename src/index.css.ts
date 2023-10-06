@@ -8,7 +8,7 @@ export const containerStyle = Styles.style({
   padding: 10,
 });
 
-export const duneStyle = Styles.style({
+export const flipsideStyle = Styles.style({
   display: 'block',
   $nest: {
     '&.dune-dark--theme': {

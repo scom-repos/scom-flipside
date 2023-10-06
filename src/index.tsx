@@ -11,47 +11,40 @@ import {
   Modal,
   Button,
 } from '@ijstech/components';
-import { fetchProjectBlockWidgets, IDuneConfig } from './global/index';
-import { containerStyle, duneStyle } from './index.css';
+import { fetchProjectBlockWidgets, IFlipsideConfig } from './global/index';
+import { containerStyle, flipsideStyle } from './index.css';
 import dataJson from './data.json';
 import ConfiguratorSettings from '@scom/scom-configurator-settings';
 
 const Theme = Styles.Theme.ThemeVars;
 
-interface ScomDuneElement extends ControlElement, IDuneConfig {}
+interface ScomFlipsideElement extends ControlElement, IFlipsideConfig {}
 
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      ['i-scom-dune']: ScomDuneElement;
+      ['i-scom-flipside']: ScomFlipsideElement;
     }
   }
 }
 
 @customModule
-@customElements('i-scom-dune')
-export default class ScomDune extends Module {
-  private vStackDune: VStack;
-  private mdConfig: Modal;
-  private pnlConfig: Panel;
-  private _data: IDuneConfig = { componentId: 0 };
+@customElements('i-scom-flipside')
+export default class ScomFlipside extends Module {
+  private vStackFlipside: VStack;
+  // private mdConfig: Modal;
+  // private pnlConfig: Panel;
+  private _data: IFlipsideConfig = { componentId: 0 };
   tag: any = {};
 
-  static async create(options?: ScomDuneElement, parent?: Container) {
+  static async create(options?: ScomFlipsideElement, parent?: Container) {
     let self = new this(parent, options);
     await self.ready();
     return self;
   }
 
-  constructor(parent?: Container, options?: ScomDuneElement) {
+  constructor(parent?: Container, options?: ScomFlipsideElement) {
     super(parent, options);
-  }
-
-  get showFooter() {
-    return this._data.showFooter ?? true;
-  }
-  set showFooter(value: boolean) {
-    this._data.showFooter = value;
   }
 
   get showHeader() {
@@ -61,11 +54,17 @@ export default class ScomDune extends Module {
     this._data.showHeader = value;
   }
 
+  get showFooter() {
+    return this._data.showFooter ?? true;
+  }
+  set showFooter(value: boolean) {
+    this._data.showFooter = value;
+  }
+
   private getData() {
     return this._data;
   }
-
-  private async setData(data: IDuneConfig) {
+  private async setData(data: IFlipsideConfig) {
     this._data = data;
     await this.renderPlaceholder();
   }
@@ -73,7 +72,6 @@ export default class ScomDune extends Module {
   private getTag() {
     return this.tag;
   }
-
   private async setTag(value: any, newTag?: boolean) {
     if (newTag) {
       this.tag = {};
@@ -140,7 +138,7 @@ export default class ScomDune extends Module {
                 onReplace({
                   ...configData,
                   module: {
-                    name: 'Dune Block',
+                    name: 'Flipside Block',
                     path,
                     category: 'charts',
                   },
@@ -184,8 +182,8 @@ export default class ScomDune extends Module {
   }
 
   private async renderPlaceholder() {
-    this.vStackDune.clearInnerHTML();
-    this.vStackDune.appendChild(
+    this.vStackFlipside.clearInnerHTML();
+    this.vStackFlipside.appendChild(
       <i-vstack
         gap={20}
         horizontalAlignment="center"
@@ -195,7 +193,7 @@ export default class ScomDune extends Module {
         onClick={this.showConfig}
         class="pointer"
       >
-        <i-label caption="Dune Block" font={{ size: '20px' }} />
+        <i-label caption="Flipside Block" font={{ size: '20px' }} />
         <i-icon name="plus" fill={Theme.colors.primary.contrastText} width={36} height={36} />
       </i-vstack>
     );
@@ -218,7 +216,7 @@ export default class ScomDune extends Module {
   async init() {
     this.isReadyCallbackQueued = true;
     super.init();
-    this.classList.add(duneStyle);
+    this.classList.add(flipsideStyle);
     this.width = this.tag.width || 700;
     this.maxWidth = '100%';
     const tag = this.getAttribute('tag', true);
@@ -239,7 +237,7 @@ export default class ScomDune extends Module {
     return (
       <i-panel display="flex" height="100%" width="100%">
         <i-vstack
-          id="vStackDune"
+          id="vStackFlipside"
           gap={20}
           height="100%"
           background={{ color: Theme.background.main }}

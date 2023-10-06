@@ -1,4 +1,4 @@
-export interface IDuneConfig {
+export interface IFlipsideConfig {
   componentId?: number;
   apiEndpoint?: string;
   options?: { [key: string]: any };

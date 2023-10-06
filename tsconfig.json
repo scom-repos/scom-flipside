@@ -12,7 +12,7 @@
     "declaration": false,
     "baseUrl": ".",
     "paths": {
-      "@scom-dune/*": ["src/*"]
+      "@scom-flipside/*": ["src/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],

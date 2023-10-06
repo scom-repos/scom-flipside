@@ -224,9 +224,9 @@ export default class ScomFlipside extends Module {
       this.setTag(tag);
     }
     const componentId = this.getAttribute('componentId', true, -1);
-    const apiEndpoint = this.getAttribute('apiEndpoint', true);
+    const queryRunId = this.getAttribute('queryRunId', true);
     const options = this.getAttribute('options', true);
-    this.setData({ componentId, apiEndpoint, options });
+    this.setData({ componentId, queryRunId, options });
     this.showHeader = this.getAttribute('showHeader', true, true);
     this.showFooter = this.getAttribute('showFooter', true, true);
     this.isReadyCallbackQueued = false;

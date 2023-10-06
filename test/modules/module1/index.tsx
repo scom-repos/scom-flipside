@@ -29,11 +29,11 @@ export default class Module1 extends Module {
         <i-scom-flipside
           margin={{ left: 'auto', right: 'auto' }}
           componentId={0}
-          apiEndpoint="https://api.dune.com/api/v1/query/2030584/results?api_key=GZ0R7Jim7TWLY7umXitxtiswiaD4eM7j"
+          queryRunId="clne3wmzw01zsok0tcouevljl"
           options={{
             title: 'Ethereum Beacon Chain Deposits',
-            counterColName: 'deposited',
-            counterLabel: 'ETH deposited',
+            pageNumber: '1',
+            pageLimit: '1000',
           }}
           tag={{
             counterNumberColor: '#b12b2b',

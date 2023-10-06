@@ -1,6 +1,6 @@
 export interface IFlipsideConfig {
   componentId?: number;
-  apiEndpoint?: string;
+  queryRunId?: string;
   options?: { [key: string]: any };
   showHeader?: boolean;
   showFooter?: boolean;

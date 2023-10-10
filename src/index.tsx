@@ -112,17 +112,17 @@ export default class ScomFlipside extends Module {
           render: async (data?: any, onReplace?: (data: any) => void) => {
             const vstack = new VStack();
             const config = new ConfiguratorSettings();
-            // config.data = dataJson;
-            const result = await fetchProjectBlockWidgets();
-            config.data = result.data.map((item, v) => {
-              return {
-                id: v,
-                title: item.title,
-                description: item.description,
-                path: item.widgetName,
-                dataUri: item.dataUri,
-              };
-            });
+            config.data = dataJson;
+            // const result = await fetchProjectBlockWidgets();
+            // config.data = result.data.map((item, v) => {
+            //   return {
+            //     id: v,
+            //     title: item.title,
+            //     description: item.description,
+            //     path: item.widgetName,
+            //     dataUri: item.dataUri,
+            //   };
+            // });
             if (this._data.options) {
               config.showDetail({
                 properties: { ...this._data },

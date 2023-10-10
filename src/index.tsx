@@ -4,11 +4,8 @@ import {
   ControlElement,
   customElements,
   Container,
-  IDataSchema,
   VStack,
   Styles,
-  Panel,
-  Modal,
   Button,
 } from '@ijstech/components';
 import { fetchProjectBlockWidgets, IFlipsideConfig } from './global/index';
@@ -32,8 +29,6 @@ declare global {
 @customElements('i-scom-flipside')
 export default class ScomFlipside extends Module {
   private vStackFlipside: VStack;
-  // private mdConfig: Modal;
-  // private pnlConfig: Panel;
   private _data: IFlipsideConfig = { componentId: 0 };
   tag: any = {};
 

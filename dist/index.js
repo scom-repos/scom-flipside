@@ -484,11 +484,12 @@ define("@scom/scom-flipside", ["require", "exports", "@ijstech/components", "@sc
             this._data = { componentId: 0 };
             this.tag = {};
             this.showConfig = () => {
-                var _a, _b;
                 const ideToolbar = this.closest('ide-toolbar');
                 if (ideToolbar) {
-                    const btnSettings = (_b = (_a = ideToolbar
-                        .querySelector('#toolsStack')) === null || _a === void 0 ? void 0 : _a.querySelector('#toolbar')) === null || _b === void 0 ? void 0 : _b.querySelector('[tool-name="Settings"]');
+                    const btnSettings = ideToolbar
+                        .querySelector('#toolsStack')
+                        ?.querySelector('#toolbar')
+                        ?.querySelector('[tool-name="Settings"]');
                     if (btnSettings) {
                         btnSettings.click();
                         return;
@@ -497,15 +498,13 @@ define("@scom/scom-flipside", ["require", "exports", "@ijstech/components", "@sc
             };
         }
         get showHeader() {
-            var _a;
-            return (_a = this._data.showHeader) !== null && _a !== void 0 ? _a : true;
+            return this._data.showHeader ?? true;
         }
         set showHeader(value) {
             this._data.showHeader = value;
         }
         get showFooter() {
-            var _a;
-            return (_a = this._data.showFooter) !== null && _a !== void 0 ? _a : true;
+            return this._data.showFooter ?? true;
         }
         set showFooter(value) {
             this._data.showFooter = value;
@@ -541,15 +540,15 @@ define("@scom/scom-flipside", ["require", "exports", "@ijstech/components", "@sc
                         let _oldData = { componentId: -1 };
                         return {
                             execute: async () => {
-                                _oldData = Object.assign({}, this._data);
-                                if ((userInputData === null || userInputData === void 0 ? void 0 : userInputData.componentId) !== undefined)
+                                _oldData = { ...this._data };
+                                if (userInputData?.componentId !== undefined)
                                     this._data.componentId = userInputData.componentId;
-                                if (builder === null || builder === void 0 ? void 0 : builder.setData)
+                                if (builder?.setData)
                                     builder.setData(userInputData);
                                 this.setData(this._data);
                             },
                             undo: () => {
-                                if (builder === null || builder === void 0 ? void 0 : builder.setData)
+                                if (builder?.setData)
                                     builder.setData(_oldData);
                                 this.setData(_oldData);
                             },
@@ -574,22 +573,25 @@ define("@scom/scom-flipside", ["require", "exports", "@ijstech/components", "@sc
                             // });
                             if (this._data.options) {
                                 config.showDetail({
-                                    properties: Object.assign({}, this._data),
+                                    properties: { ...this._data },
                                     id: this._data.componentId,
-                                    tag: Object.assign({}, this.tag),
+                                    tag: { ...this.tag },
                                 });
                             }
                             else if (this.tag) {
-                                config.parentTags = Object.assign({}, this.tag);
+                                config.parentTags = { ...this.tag };
                             }
                             config.onSaveConfigData = (configData) => {
                                 if (configData && onReplace) {
                                     const { path } = configData;
-                                    onReplace(Object.assign(Object.assign({}, configData), { module: {
+                                    onReplace({
+                                        ...configData,
+                                        module: {
                                             name: 'Flipside Block',
                                             path,
                                             category: 'charts',
-                                        } }));
+                                        },
+                                    });
                                 }
                             };
                             vstack.append(config);
